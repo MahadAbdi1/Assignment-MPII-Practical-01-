@@ -6,6 +6,7 @@ package com.example.composejourney
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color.red
 import android.graphics.Paint
 import android.graphics.fonts.FontFamily
@@ -65,7 +66,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             Welcome()
 
-        }
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement=Arrangement.Center
+            ) {
+              Button(onClick = {
+                  val navigate = Intent(this@MainActivity, StartActivity::class.java)
+                  startActivity(navigate)
+               }) {
+                  Text(text = "Start journey", fontSize = 18.sp, )
+              }
+            }
+
+        } // set content
     }
 }
 
@@ -88,12 +102,19 @@ fun Welcome() {
             text = "Welcome to My Jetpack Compose Journey!",
             style = MaterialTheme.typography.h5,
 
+
         )
-        CustomAlet(content = "menu", icon = Icons.Outlined.Menu)
+        CustomAlet(content = "Info", icon = Icons.Outlined.Menu)
+        // i replaced "menu" to "info" text from practical one, nothing else changes from the code
     }
 
-}
 
+} // welcome text
+
+
+
+
+// dailog alert
 @Composable
 fun CustomAlet(content: String, icon: ImageVector ?= null, state: MutableState<Boolean> ?= null) {
     Row(

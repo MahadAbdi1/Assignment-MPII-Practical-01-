@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ComposeJourney</string>
+    <string name="title_activity_start_journey">StartJourney</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_nav">Nav</string>
+    <string name="title_activity_nav_controller">NavController</string>
 </resources>

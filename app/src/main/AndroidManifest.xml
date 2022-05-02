@@ -10,6 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeJourney">
         <activity
+            android:name=".StartActivity"
+            android:exported="false"
+            android:label="@string/title_activity_start"
+            android:theme="@style/Theme.ComposeJourney" />
+        <activity
+            android:name=".ui.theme.NavController"
+            android:exported="false"
+            android:label="@string/title_activity_nav_controller"
+            android:theme="@style/Theme.ComposeJourney" />
+        <activity
+            android:name=".ui.theme.Nav"
+            android:exported="false"
+            android:label="@string/title_activity_nav"
+            android:theme="@style/Theme.ComposeJourney" />
+        <activity
+            android:name=".ui.theme.StartActivity"
+            android:exported="false"
+            android:label="@string/title_activity_start"
+            android:theme="@style/Theme.ComposeJourney" />
+        <activity
+            android:name=".StartJourney"
+            android:exported="false"
+            android:label="@string/title_activity_start_journey"
+            android:theme="@style/Theme.ComposeJourney" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
