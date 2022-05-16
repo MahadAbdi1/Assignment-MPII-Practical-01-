@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.rounded.Info
@@ -65,11 +66,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Welcome()
+            CustomAlet()
 
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement=Arrangement.Center
+                verticalArrangement=Arrangement.Bottom
             ) {
               Button(onClick = {
                   val navigate = Intent(this@MainActivity, StartActivity::class.java)
@@ -77,7 +79,9 @@ class MainActivity : ComponentActivity() {
                }) {
                   Text(text = "Start journey", fontSize = 18.sp, )
               }
+
             }
+
 
         } // set content
     }
@@ -104,43 +108,61 @@ fun Welcome() {
 
 
         )
-        CustomAlet(content = "Info", icon = Icons.Outlined.Menu)
+        //CustomAlet(content = "Info", icon = Icons.Outlined.Menu)
+       // Text(text="Info", fontSize = 18.sp)
+
+
         // i replaced "menu" to "info" text from practical one, nothing else changes from the code
     }
 
 
 } // welcome text
 
-
-
-
 // dailog alert
 @Composable
-fun CustomAlet(content: String, icon: ImageVector ?= null, state: MutableState<Boolean> ?= null) {
-    Row(
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+fun CustomAlet()
+{
+    val openDialog=remember{mutableStateOf(false)}
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement=Arrangement.Center,
+        horizontalAlignment=Alignment.CenterHorizontally
     )
     {
-        Button(
-           onClick = { if(state != null) state.value = true }
-        )
+        Button(onClick = { openDialog.value = true },
+            colors= ButtonDefaults.buttonColors())
         {
-            MenuIcon(icon)
-            Text(
-               text = content.uppercase()
-
+            Icon(imageVector = Icons.Filled.Info,
+                contentDescription = "",
             )
+
+            Text(text="Info",style= TextStyle(Color.White), fontSize = 18.sp)
         }
 
     }
+    if (openDialog.value) {
+        AlertDialog(
+            onDismissRequest = { openDialog.value = false },
+            title = {
+                Text(text = "Alert Dialog",
+                    fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontSize = 16.sp)
+            },
+            text = {
+                Text(text =
+                "i was very interesting to learn mobile programming since last year ,"  +
+                        "\n after i completed mobile programming 1 i had no hesitation to start mobile programming 2 " +
+                        "\n and what makes so interesting is that we using jetpack compose which is  interesting to learn  and easier then xml that i did last year", fontSize = 18.sp)
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    openDialog.value=false
+                }){
+                    Text(text = "Close")
+                }
 
-}
-@Composable
-private fun MenuIcon(icon: ImageVector ?= null) {
-    if (icon != null) {
-        Icon(imageVector = icon, contentDescription = "",
-
+            },
         )
     }
 }
+
+
